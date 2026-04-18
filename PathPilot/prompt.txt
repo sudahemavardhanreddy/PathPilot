@@ -1,0 +1,64 @@
+Prompt:
+
+Build a web-based platform named “PathPilot” – a One-Stop Personalized Career & Education Advisor for students after Class 10 and 12.
+
+Objective:
+To provide structured, reliable, and personalized academic and career guidance that helps students select appropriate streams, degree programs, and career paths while increasing awareness about government degree colleges.
+
+Core Features:
+
+Student Profile System
+
+Registration and login.
+
+Academic background entry (10th/12th details).
+
+Interest and career preference selection.
+
+Aptitude & Interest Assessment
+
+MCQ-based test module.
+
+Categorization into domains (Analytical, Creative, Technical, Social, etc.).
+
+Automated stream recommendation (Arts/Science/Commerce).
+
+Course-to-Career Pathway Mapping
+
+Visual representation:
+Stream → Degree → Job Roles → Higher Studies → Competitive Exams.
+
+Interactive and easy-to-understand pathway diagrams.
+
+Government College Directory
+
+Filter by location.
+
+Display nearby government colleges.
+
+Show available degree programs and eligibility.
+
+Degree Comparison Dashboard
+
+Compare courses based on duration, scope, career outcomes, and growth potential.
+
+AI-Based Recommendation Engine
+
+Match student assessment scores with suitable streams and degrees.
+
+Provide reasoning for each recommendation.
+
+User Experience
+
+Clean, modern, mobile-friendly interface.
+
+Simple navigation for first-time users.
+
+Tech Stack Suggestion:
+Frontend: React
+Backend: Node.js / Django
+Database: MySQL / MongoDB
+Basic AI scoring logic for recommendations.
+
+Goal:
+Develop a scalable prototype that demonstrates how structured guidance can reduce confusion, improve informed decision-making, and positively influence higher education enrollment.

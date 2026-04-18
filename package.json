@@ -1,0 +1,12 @@
+{
+  "name": "pathpilot",
+  "version": "1.0.0",
+  "description": "PathPilot – a One-Stop Personalized Career & Education Advisor",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

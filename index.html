@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathPilot | AI Career Roadmap & College Finder</title>
+    <meta name="description"
+        content="PathPilot helps students discover careers, compare colleges, and find scholarships using personalized AI-driven roadmaps and community support.">
+    <meta name="keywords"
+        content="career guidance, AI career counselor, college finder India, scholarships 2025, career roadmap, study abroad, student community">
+    <meta property="og:title" content="PathPilot | AI Career Roadmap & College Finder">
+    <meta property="og:description"
+        content="Discover your future with personalized career roadmaps, real-world experience, and community peer groups.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pathpilot.ai">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.6">
+    <link rel="manifest" href="manifest.json">
+    <link rel="canonical" href="https://pathpilot.ai">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+    <!-- Social Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PathPilot | AI Career Roadmap & College Finder">
+    <meta name="twitter:description" content="Discover your future with personalized AI career roadmaps.">
+    <meta name="twitter:image" content="https://pathpilot.ai/og-image.png">
+
+    <meta name="theme-color" content="#6366f1">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "PathPilot",
+      "url": "https://pathpilot.ai",
+      "logo": "https://pathpilot.ai/logo.png",
+      "description": "AI-Powered Career & Education Advisor for students.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar glass-card">
+        <div class="container nav-content">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" style="margin-right: 8px;">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--primary)" />
+                            <stop offset="100%" style="stop-color:var(--secondary)" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M16 2 L2 30 L16 24 L30 30 Z" fill="url(#logoGrad)" />
+                </svg>
+                Path<span>Pilot</span>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('assessment')">Assessment</a>
+                <a href="#" onclick="showSection('comparison')">Degrees</a>
+                <a href="#" onclick="showSection('directory')">Colleges</a>
+                <a href="#" onclick="showSection('resources')">Resources</a>
+                <a href="#" onclick="showSection('encyclopedia')">Encyclopedia</a>
+                <a href="#" id="profile-link" onclick="showSection('profile')">Profile</a>
+            </div>
+            <div class="auth-status" style="display: flex; align-items: center; gap: 16px;">
+                <div
+                    style="display: flex; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                    <button onclick="setThemeScheme('forest')" class="btn"
+                        style="padding: 4px; min-width: 24px; background: #10b981; border-radius: 4px; border: none; cursor: pointer;"
+                        title="Main Theme (Forest)"></button>
+                </div>
+                <!-- Phase 22: Language Toggle -->
+                <button class="icon-btn" id="lang-toggle" onclick="toggleLanguage()" aria-label="Switch Language"
+                    title="Toggle Hindi/English" style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">
+                    EN
+                </button>
+                <!-- Phase 23: Parent Mode Toggle -->
+                <button class="icon-btn" id="parent-mode-toggle" onclick="toggleParentMode()"
+                    aria-label="Toggle Parent Mode" title="Toggle Parent Mode"
+                    style="color: var(--secondary); display: flex; align-items: center; gap: 4px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span style="font-size: 0.7rem; font-weight: 700;">Parent</span>
+                </button>
+                <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark/Light Mode"
+                    title="Toggle Dark/Light Mode">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button class="icon-btn" id="command-palette-btn" onclick="openCommandPalette()"
+                    aria-label="Quick Search" title="Quick Search (Ctrl+K)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div class="notification-wrapper">
+                    <button class="icon-btn" id="notif-btn" onclick="toggleNotifDrawer()"
+                        aria-label="View Notifications" title="Notifications">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span id="notif-badge" class="notif-badge hidden">0</span>
+                    </button>
+                    <div id="notif-drawer" class="glass-card notif-drawer">
+                        <div class="notif-header">
+                            <h4>Notifications</h4>
+                            <button onclick="clearNotifs()"
+                                style="background:none; border:none; color:var(--primary); font-size: 0.75rem; cursor:pointer;">Clear
+                                All</button>
+                        </div>
+                        <div id="notif-list">
+                            <p style="text-align:center; padding: 20px; color:var(--text-muted); font-size:0.85rem;">No
+                                new notifications</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="login-btn" onclick="openOnboarding()">Join</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Multi-Step Onboarding Modal -->
+    <div id="onboarding-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate">
+            <div id="step-indicators" class="step-indicators">
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+            </div>
+
+            <!-- Step 1: Bio -->
+            <div id="onboarding-step-1" class="onboarding-step active">
+                <h2>Welcome to PathPilot</h2>
+                <p>Let's start with the basics. What's your name?</p>
+                <input type="text" id="user-name" placeholder="Full Name" required>
+                <select id="user-class" required>
+                    <option value="" disabled selected>Current Grade</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                    <option value="graduated">Exploring</option>
+                </select>
+                <select id="user-gender" required style="margin-top: 12px; margin-bottom: 20px; width: 100%;">
+                    <option value="" disabled selected>Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                <div style="border-top: 1px solid var(--glass-border); padding-top: 16px; margin-top: 16px;">
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Parent/Guardian
+                        Information (For Progress Reports)</p>
+                    <input type="text" id="parent-name" placeholder="Parent's Name" style="margin-bottom: 12px;">
+                    <input type="email" id="parent-email" placeholder="Parent's Email ID">
+                </div>
+                <button class="btn btn-primary" style="width:100%; margin-top: 20px;"
+                    onclick="nextOnboardingStep(2)">Continue</button>
+            </div>
+
+            <!-- Step 2: Academics -->
+            <div id="onboarding-step-2" class="onboarding-step">
+                <h2>Academic Profile</h2>
+                <p>Estimate your average marks (%) in these key areas:</p>
+                <div style="display: grid; gap: 12px; margin-bottom: 20px;">
+                    <div>
+                        <label style="font-size: 0.85rem; color: var(--text-muted);">Math/Logic</label>
+                        <input type="number" id="marks-math" placeholder="e.g. 85" min="0" max="100">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.85rem; color: var(--text-muted);">Language/Arts</label>
+                        <input type="number" id="marks-arts" placeholder="e.g. 78" min="0" max="100">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.85rem; color: var(--text-muted);">Science</label>
+                        <input type="number" id="marks-science" placeholder="e.g. 92" min="0" max="100">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                    <button class="btn" style="flex: 1; background: var(--surface);"
+                        onclick="nextOnboardingStep(1)">Back</button>
+                    <button class="btn btn-primary" style="flex: 2;" onclick="nextOnboardingStep(3)">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Interests -->
+            <div id="onboarding-step-3" class="onboarding-step">
+                <h2>Career Interests</h2>
+                <p>Which broad area excites you most right now?</p>
+                <div class="options" style="margin-bottom: 24px;">
+                    <button class="option-btn" onclick="selectInterest('Technology')">Technology & Coding</button>
+                    <button class="option-btn" onclick="selectInterest('Business')">Business & Finance</button>
+                    <button class="option-btn" onclick="selectInterest('Creative')">Creative Arts & Design</button>
+                    <button class="option-btn" onclick="selectInterest('Social')">Social Impact & Policy</button>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                    <button class="btn" style="flex: 1; background: var(--surface);"
+                        onclick="nextOnboardingStep(2)">Back</button>
+                    <button id="finish-onboarding" class="btn btn-primary" style="flex: 2; display: none;"
+                        onclick="completeOnboarding()">Finish Setup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Home / Welcome Section -->
+        <section id="home" class="section active">
+            <!-- Phase 10: Welcome Hero -->
+            <div id="welcome-hero" class="glass-card animate"
+                style="margin-bottom: 40px; text-align: center; border: 1px solid var(--primary); background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));">
+                <div class="hero-badge" style="margin-top: 0;">New: Resume Builder & PDF Export</div>
+                <h1 style="font-size: 2.5rem; line-height: 1.2;">Fly Your Career with <span>PathPilot</span></h1>
+                <p style="margin: 16px auto; max-width: 600px;">Your personalized, AI-powered mentor for education and
+                    careers. Discover your aptitude and land your dream job.</p>
+                <div style="display: flex; gap: 16px; justify-content: center;">
+                    <button class="btn btn-primary" onclick="showSection('assessment')">Get Started</button>
+                    <button class="btn" onclick="showSection('encyclopedia')"
+                        style="background: var(--surface);">Explore Careers</button>
+                </div>
+            </div>
+
+            <!-- Phase 19: Industry Pulse Feed -->
+            <div id="industry-feed-container" class="glass-card animate"
+                style="margin-bottom: 24px; border-left: 4px solid var(--primary);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h4 id="market-status"
+                        style="margin: 0; font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">
+                        Live Industry Pulse</h4>
+                    <span class="badge" style="background: var(--surface); font-size: 0.6rem;">Real-time</span>
+                </div>
+                <div id="industry-feed">
+                    <!-- Pulses injected here -->
+                </div>
+            </div>
+
+            <!-- Phase 21: Career Accelerator: Weekly Missions -->
+            <div id="mission-hub" class="glass-card animate"
+                style="margin-bottom: 32px; border-left: 4px solid var(--secondary); background: linear-gradient(to right, rgba(236, 72, 153, 0.05), transparent);">
+                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="margin: 0; color: var(--secondary); font-size: 1.1rem;">🔥 Weekly Career Mission</h3>
+                        <p id="mission-text" style="font-size: 0.9rem; color: var(--text-main); margin-top: 4px;">
+                            Loading challenge...</p>
+                    </div>
+                    <div id="mission-action">
+                        <button class="btn btn-secondary" onclick="completeMission()" id="mission-btn"
+                            style="padding: 8px 16px; font-size: 0.8rem;">Claim XP</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="glass-card">
+                    <h3>Stream Selection</h3>
+                    <p>Science, Commerce, or Arts? Get personalized recommendations based on your aptitude.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>Degree Mapping</h3>
+                    <p>Visual course-to-career pathways that show you exactly where each degree leads.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>College Directory</h3>
+                    <p>Explore government degree colleges nearby and check eligibility instantly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section id="assessment" class="section">
+            <div class="glass-card assessment-container">
+                <div id="quiz-header">
+                    <h2>Career Aptitude Assessment</h2>
+                    <p>Discover your ideal path through our domain-specific MCQ test.</p>
+                    <div class="progress-container" style="height: 10px; margin-top: 20px;">
+                        <div id="progress-fill" class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div id="question-container">
+                    <!-- Questions will be injected here -->
+                </div>
+                <div id="quiz-results" class="hidden">
+                    <h2 style="text-align: center; margin-bottom: 10px;">Your 5-Stage Career Roadmap</h2>
+                    <p
+                        style="text-align: center; color: var(--primary); font-weight: 700; font-size: 1.2rem; margin-bottom: 30px;">
+                        Top Stream: <span id="last-score">Analyzing...</span></p>
+
+                    <!-- Dynamic SVG Pathway -->
+                    <div id="pathway-container" class="animate">
+                        <!-- SVG will be injected here -->
+                    </div>
+
+                    <div id="recommendation-output"></div>
+
+                    <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showSection('comparison')">Compare Degrees</button>
+                        <button class="btn" onclick="showSection('directory')"
+                            style="background: var(--surface); border: 1px solid var(--glass-border);">Nearby
+                            Colleges</button>
+                        <button class="btn" onclick="resetAssessment()"
+                            style="background: var(--surface); border: 1px solid var(--glass-border);">Retake
+                            Test</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Dashboard -->
+        <section id="comparison" class="section">
+            <h2>Degree Comparison Dashboard</h2>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">Compare popular degree programs side-by-side.</p>
+            <div class="glass-card" style="padding: 0; overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Degree</th>
+                            <th>Duration</th>
+                            <th>Scope</th>
+                            <th>Growth Potential</th>
+                            <th>Careers</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-body">
+                        <!-- Data will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- College Directory Section -->
+        <section id="directory" class="section">
+            <h2>Government College Directory</h2>
+            
+            <div class="glass-card" style="margin-bottom: 24px; background: #e2e6f3;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="margin: 0; font-size: 1rem; color: #1a1a2e; font-weight: 700;">Filter By State</h3>
+                    <a href="#" onclick="toggleStateFilter('All')" style="font-size: 0.85rem; color: #5a6b9c; text-decoration: none; font-weight: 600;">View All &rarr;</a>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px;" id="state-pill-container">
+                    <button class="state-pill" onclick="toggleStateFilter('Andhra Pradesh')">Andhra Pradesh</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Arunachal Pradesh')">Arunachal Pradesh</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Assam')">Assam</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Bihar')">Bihar</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Chhattisgarh')">Chhattisgarh</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Goa')">Goa</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Gujarat')">Gujarat</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Haryana')">Haryana</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Himachal Pradesh')">Himachal Pradesh</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Jammu and Kashmir')">Jammu and Kashmir</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Maharashtra')">Maharashtra</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Delhi')">Delhi</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Karnataka')">Karnataka</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Tamil Nadu')">Tamil Nadu</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Telangana')">Telangana</button>
+                    <button class="state-pill" onclick="toggleStateFilter('West Bengal')">West Bengal</button>
+                    <button class="state-pill" onclick="toggleStateFilter('Rajasthan')">Rajasthan</button>
+                </div>
+            </div>
+            <style>
+                .state-pill {
+                    background: white;
+                    color: #5a6b9c;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    font-weight: 500;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                }
+                .state-pill:hover, .state-pill.active {
+                    background: #5a6b9c;
+                    color: white;
+                }
+            </style>
+
+            <div class="filters glass-card">
+                <input type="text" id="city-filter" placeholder="Filter by city (e.g., Delhi, Mumbai)..."
+                    oninput="filterColleges()">
+                <select id="stream-filter" onchange="filterColleges()">
+                    <option value="all">All Streams</option>
+                    <option value="Science">Science/Technical</option>
+                    <option value="Commerce">Commerce/Business</option>
+                    <option value="Arts">Arts/Humanities</option>
+                </select>
+            </div>
+            <div id="college-list" class="grid">
+                <!-- Colleges will be injected here -->
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="glass-card profile-grid">
+                <div class="profile-info">
+                    <h2>Student Profile</h2>
+                    <div id="user-info-display" style="font-size: 0.95rem; line-height: 1.8;">
+                        <p><strong>Name:</strong> <span id="display-name">Awaiting Profile</span></p>
+                        <p><strong>Class:</strong> <span id="display-class">Awaiting Assessment</span></p>
+                        <p><strong>Primary Interest:</strong> <span id="display-interest">Not Set</span></p>
+                        <p><strong>Gender:</strong> <span id="display-gender">N/A</span></p>
+                        <p><strong>Top Subject:</strong> <span id="display-strength">N/A</span></p>
+                    </div>
+
+                    <!-- Phase 17: Data Management -->
+                    <div
+                        style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start;">
+                        <button class="btn btn-primary"
+                            style="font-size: 0.75rem; padding: 8px 16px; display: flex; align-items: center; gap: 6px;"
+                            onclick="downloadDataBackup()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Backup Data
+                        </button>
+                        <button class="btn"
+                            style="font-size: 0.75rem; padding: 8px 16px; background: rgba(244, 63, 94, 0.1); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.2); display: flex; align-items: center; gap: 6px;"
+                            onclick="resetProfile()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
+                            </svg>
+                            Reset Profile
+                        </button>
+                    </div>
+
+                    <!-- Skills Radar Chart -->
+                    <div id="skills-radar-container" style="margin-top: 32px; text-align: center;">
+                        <h4
+                            style="margin-bottom: 16px; font-size: 0.9rem; text-transform: uppercase; color: var(--primary);">
+                            Growth Radar</h4>
+                        <div id="radar-chart" style="width: 100%; height: 200px; position: relative;">
+                            <!-- SVG Radar will be injected here -->
+                        </div>
+                        <div
+                            style="display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 0.7rem; color: var(--text-muted);">
+                            <span>Logic</span> &bull; <span>Knowledge</span> &bull; <span>Social</span> &bull;
+                            <span>Creative</span>
+                        </div>
+                    </div>
+
+                    <!-- Success Forecast Chart -->
+                    <div id="success-forecast-container" style="margin-top: 32px; text-align: center;">
+                        <h4
+                            style="margin-bottom: 16px; font-size: 0.9rem; text-transform: uppercase; color: var(--secondary);">
+                            10-Year Success Forecast</h4>
+                        <div id="forecast-chart" style="width: 100%; height: 180px; position: relative;">
+                            <!-- SVG Forecast will be injected here -->
+                        </div>
+                        <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 8px;">Simulated earning
+                            potential growth based on industry trends.</p>
+                    </div>
+
+                    <!-- Readiness Insights (Phase 16) -->
+                    <div class="glass-card animate"
+                        style="margin-top: 24px; text-align: center; border: 1px solid var(--primary);">
+                        <h4
+                            style="font-size: 0.8rem; text-transform: uppercase; color: var(--primary); margin-bottom: 16px;">
+                            Core Readiness Index</h4>
+                        <div id="readiness-radial" style="display: flex; justify-content: center; margin: 20px 0;">
+                        </div>
+                        <h3 id="readiness-label" style="margin: 8px 0; color: var(--text-main);">Analyzing...</h3>
+                        <p id="readiness-feedback"
+                            style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Complete more
+                            milestones to see your feedback.</p>
+                    </div>
+
+                    <div id="user-stats-display"
+                        style="margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        <div class="glass-card"
+                            style="text-align: center; padding: 12px; border-top: 2px solid var(--primary);">
+                            <p style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 4px;">Career XP</p>
+                            <h3 id="display-xp" style="margin: 0; color: var(--primary); font-size: 1.1rem;">0</h3>
+                        </div>
+                        <div class="glass-card"
+                            style="text-align: center; padding: 12px; border-top: 2px solid var(--success);">
+                            <p style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 4px;">Missions</p>
+                            <h3 id="display-missions" style="margin: 0; color: var(--success); font-size: 1.1rem;">0
+                            </h3>
+                        </div>
+                        <div class="glass-card"
+                            style="text-align: center; padding: 12px; border-top: 2px solid var(--accent);">
+                            <p style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 4px;">Resilience</p>
+                            <h3 id="display-resilience-score"
+                                style="margin: 0; color: var(--accent); font-size: 1.1rem;">0%</h3>
+                        </div>
+                    </div>
+
+                    <div id="user-communities-display" style="margin-top: 24px;">
+                        <h4
+                            style="margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; color: var(--primary);">
+                            My Communities</h4>
+                        <div id="joined-community-list" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Not joined any group yet.</p>
+                        </div>
+                    </div>
+
+                    <!-- Smart Alerts Section -->
+                    <div id="smart-alerts" class="glass-card animate"
+                        style="margin-top: 24px; padding: 16px; border-left: 4px solid var(--warning); display: none;">
+                        <h4 style="margin: 0; color: var(--warning); display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.2rem;">🔔</span> Smart Exam Alerts
+                        </h4>
+                        <div id="alerts-list" style="margin-top: 10px; font-size: 0.9rem;">
+                            <!-- Alerts injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personalized Roadmaps -->
+                <div id="roadmap-section" style="margin-top: 40px; text-align: left;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2 style="margin: 0;">My Career Roadmaps</h2>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="btn"
+                                style="padding: 4px 12px; font-size: 0.75rem; background: var(--surface);"
+                                onclick="toggleRoadmapView()">Toggle View</button>
+                            <span id="roadmap-count" class="badge"
+                                style="background: var(--surface); padding: 4px 12px; border-radius: 20px;">0
+                                Active</span>
+                        </div>
+                    </div>
+                    <div id="roadmap-list" class="grid" style="grid-template-columns: 1fr;">
+                        <div class="glass-card"
+                            style="text-align: center; padding: 40px; border: 1px dashed var(--glass-border);">
+                            <p style="color: var(--text-muted);">No roadmaps saved yet. Explore the <a href="#"
+                                    onclick="showSection('encyclopedia')"
+                                    style="color: var(--primary);">Encyclopedia</a> to start your journey.</p>
+                        </div>
+                    </div>
+
+                    <!-- Phase 15: Career Pivot Simulator -->
+                    <div class="glass-card animate" style="margin-top: 32px; border-top: 4px solid var(--accent);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
+                            <div>
+                                <h3 style="margin: 0;">Resilience Simulator</h3>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Test your
+                                    roadmap against global market disruptions.</p>
+                            </div>
+                            <span class="badge"
+                                style="background: var(--surface); color: var(--accent); font-size: 0.6rem;">What-If
+                                Analysis</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <button class="btn btn-primary"
+                                style="background: var(--surface); color: var(--text-main); font-size: 0.8rem; padding: 8px 16px; border: 1px solid var(--accent);"
+                                onclick="runPivotSimulation('ai_automation')">AI Automation Spike</button>
+                            <button class="btn btn-primary"
+                                style="background: var(--surface); color: var(--text-main); font-size: 0.8rem; padding: 8px 16px; border: 1px solid var(--accent);"
+                                onclick="runPivotSimulation('economic_recession')">Global Recession</button>
+                            <button class="btn btn-primary"
+                                style="background: var(--surface); color: var(--text-main); font-size: 0.8rem; padding: 8px 16px; border: 1px solid var(--accent);"
+                                onclick="runPivotSimulation('tech_boom')">Sustainable Tech Boom</button>
+                        </div>
+                        <div id="pivot-result" class="hidden glass-card"
+                            style="background: rgba(var(--primary-rgb), 0.05); padding: 15px; border-left: 4px solid var(--accent);">
+                            <!-- Simulation results injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 12: Interview Pilot & Analytics -->
+                <div class="grid" style="margin-top: 40px;">
+                    <div class="glass-card animate" style="border-top: 4px solid var(--primary);">
+                        <h3>Interview Pilot AI</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 8px 0 20px;">Practice your
+                            communication skills with a career-specific mock interview.</p>
+                        <button class="btn btn-primary" onclick="startInterview()">Start Mock Interview</button>
+                    </div>
+                    <div class="glass-card animate" style="border-top: 4px solid var(--secondary);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0;">Skill Velocity</h3>
+                            <span class="badge"
+                                style="background: var(--surface); color: var(--secondary); font-size: 0.6rem;">Live
+                                Growth</span>
+                        </div>
+                        <div id="skill-velocity-container" style="height: 150px; position: relative; margin-top: 10px;">
+                            <!-- SVG Line Chart will be injected here -->
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 12px;">
+                            Advanced Performance Tracking</p>
+                    </div>
+                </div>
+
+                <div class="profile-actions" style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="showSection('assessment')">Retake Assessment</button>
+                    <button class="btn" onclick="openOnboarding()"
+                        style="background: var(--surface); border: 1px solid var(--glass-border);">Update
+                        Details</button>
+                    <button class="btn btn-primary" style="background: var(--secondary); color: white;"
+                        onclick="generateResume()">Build Smart Resume</button>
+                    <button class="btn btn-primary" style="background: var(--accent);"
+                        onclick="generateGuardianReport()">Guardian View</button>
+                    <button class="btn" style="background: var(--surface); border: 1px solid var(--primary);"
+                        onclick="sharePortfolio()">Share Portfolio</button>
+                    <button class="btn"
+                        style="background: var(--surface); border: 1px solid var(--secondary); color: var(--secondary);"
+                        onclick="exportPortfolioMarkdown()">Export Markdown</button>
+                </div>
+
+                <!-- Phase 14: Achievements Tab -->
+                <div style="margin-top: 40px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2 style="font-size: 1.5rem; color: var(--text-main);">Achievement Gallery</h2>
+                        <span class="badge" style="background: var(--primary); color: white;" id="badge-count">0
+                            Badges</span>
+                    </div>
+                    <div id="achievements-grid" class="grid"
+                        style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px;">
+                        <!-- Badges injected here -->
+                    </div>
+                </div>
+
+                <!-- Phase 10: Resume Preview -->
+                <div id="resume-preview-container" class="hidden animate"
+                    style="margin-top: 40px; border-top: 2px solid var(--primary); padding-top: 40px;">
+                    <div id="resume-preview">
+                        <!-- Resume Content -->
+                    </div>
+                    <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center;">
+                        <button class="btn btn-primary" onclick="printResume()">Download / Print PDF</button>
+                        <button class="btn" style="background: var(--surface); color: var(--text-main);"
+                            onclick="document.getElementById('resume-preview-container').classList.add('hidden')">Close
+                            Preview</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Resources Hub Section -->
+        <section id="resources" class="section">
+            <div class="section-header">
+                <h2>Knowledge & Funding Hub</h2>
+                <p style="color: var(--text-muted);">Explore scholarship opportunities and competitive exam roadmaps.
+                </p>
+            </div>
+
+            <div class="resource-tabs" style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary" id="tab-scholarships"
+                    onclick="switchResourceTab('scholarships')">Scholarships</button>
+                <button class="btn" id="tab-exams" onclick="switchResourceTab('exams')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Competitive
+                    Exams</button>
+                <button class="btn" id="tab-skillup" onclick="switchResourceTab('skillup')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Skill-Up Hub</button>
+                <button class="btn" id="tab-mentors" onclick="switchResourceTab('mentors')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Mentors</button>
+                <button class="btn" id="tab-global" onclick="switchResourceTab('global')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Global Hub</button>
+                <button class="btn" id="tab-community" onclick="switchResourceTab('community')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Community</button>
+                <button class="btn" id="tab-experience" onclick="switchResourceTab('experience')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Experience</button>
+                <button class="btn" id="tab-finance" onclick="switchResourceTab('finance')"
+                    style="background: var(--surface); border: 1px solid var(--glass-border);">Family Finance</button>
+            </div>
+
+            <!-- Scholarship Search -->
+            <div id="scholarship-module" class="resource-module active animate">
+                <div class="filters glass-card" style="margin-top: 24px;">
+                    <input type="text" id="scholarship-filter" placeholder="Search by name or category..."
+                        oninput="filterScholarships()">
+                    <select id="scholarship-category" onchange="filterScholarships()">
+                        <option value="all">All Categories</option>
+                        <option value="Merit">Merit-Based</option>
+                        <option value="Need">Need-Based</option>
+                        <option value="Special">Special Category</option>
+                    </select>
+                </div>
+                <div id="scholarship-list" class="grid" style="margin-top: 24px;">
+                    <!-- Data injected here -->
+                </div>
+            </div>
+
+            <!-- Exam Roadmap -->
+            <div id="exam-module" class="resource-module animate">
+                <div class="grid" id="exam-list" style="margin-top: 24px;">
+                    <!-- Data injected here -->
+                </div>
+            </div>
+
+            <!-- Skill-Up Hub -->
+            <div id="skillup-module" class="resource-module animate">
+                <div class="grid" id="skillup-list" style="margin-top: 24px;">
+                    <!-- Data injected here -->
+                </div>
+            </div>
+
+            <!-- Mentors Hub -->
+            <div id="mentors-module" class="resource-module animate">
+                <div class="grid" id="mentor-list" style="margin-top: 24px;">
+                    <!-- Data injected here -->
+                </div>
+            </div>
+
+            <!-- Global Hub (GPA Converter & Study Abroad) -->
+            <div id="global-module" class="resource-module animate">
+                <div class="grid"
+                    style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 24px;">
+                    <!-- GPA Converter Tool -->
+                    <div class="glass-card" style="border-top: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary);">Global GPA Converter</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Convert your board
+                            marks to international standards (4.0 GPA, ECTS).</p>
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                            <label style="font-size: 0.8rem;">Enter Percentage (%)</label>
+                            <input type="number" id="gpa-input" placeholder="e.g. 85"
+                                style="background: var(--surface); border: 1px solid var(--glass-border); color: var(--text-main); padding: 10px; border-radius: 8px;">
+                            <button class="btn btn-primary" onclick="convertGPA()">Convert Now</button>
+                        </div>
+                        <div id="gpa-results" class="hidden"
+                            style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--glass-border);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div style="text-align: center;">
+                                    <p style="font-size: 0.7rem; color: var(--text-muted);">US GPA</p>
+                                    <h2 id="us-gpa" style="color: var(--success);">-</h2>
+                                </div>
+                                <div style="text-align: center;">
+                                    <p style="font-size: 0.7rem; color: var(--text-muted);">ECTS Grade</p>
+                                    <h2 id="ects-grade" style="color: var(--secondary);">-</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study Abroad Fast-Track -->
+                    <div class="glass-card" style="border-top: 4px solid var(--accent);">
+                        <h3 style="color: var(--accent);">Admissions Expert Panel</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Get simulated expert
+                            advice on international admissions and visas.</p>
+                        <div id="global-colleges-list" style="display: flex; flex-direction: column; gap: 12px;">
+                            <!-- Global colleges data injected here -->
+                        </div>
+                        <button class="btn" onclick="showSection('mentors')"
+                            style="width: 100%; margin-top: 16px; background: var(--surface);">Talk to Study Abroad
+                            AI</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Hub -->
+            <div id="experience-module" class="resource-module animate">
+                <div class="grid" id="experience-list" style="margin-top: 24px;">
+                    <!-- Data injected here -->
+                </div>
+            </div>
+
+            <!-- Phase 23: Family Finance Hub (EMI & Savings) -->
+            <div id="finance-module" class="resource-module animate">
+                <div class="grid"
+                    style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 24px;">
+                    <!-- Education Loan EMI Calculator -->
+                    <div class="glass-card" style="border-top: 4px solid var(--secondary);">
+                        <h3 style="color: var(--secondary);">Education Loan Calculator</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Estimate your monthly
+                            repayments based on current bank rates.</p>
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                <div>
+                                    <label style="font-size: 0.75rem;">Loan Amount (₹)</label>
+                                    <input type="number" id="loan-amount" value="500000"
+                                        style="width: 100%; background: var(--surface); border: 1px solid var(--glass-border); color: var(--text-main); padding: 8px; border-radius: 6px;">
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.75rem;">Interest Rate (%)</label>
+                                    <input type="number" id="loan-rate" value="9.5" step="0.1"
+                                        style="width: 100%; background: var(--surface); border: 1px solid var(--glass-border); color: var(--text-main); padding: 8px; border-radius: 6px;">
+                                </div>
+                            </div>
+                            <label style="font-size: 0.75rem;">Tenure (Years)</label>
+                            <input type="range" id="loan-years" min="1" max="15" value="7"
+                                oninput="document.getElementById('loan-years-val').innerText = this.value">
+                            <p
+                                style="text-align: right; font-size: 0.75rem; color: var(--secondary); font-weight: 700;">
+                                <span id="loan-years-val">7</span> Years
+                            </p>
+                            <button class="btn btn-secondary" onclick="calculateEMI()" style="width: 100%;">Calculate
+                                EMI</button>
+                        </div>
+                        <div id="emi-results" class="hidden"
+                            style="margin-top: 20px; padding: 12px; background: rgba(236, 72, 153, 0.05); border-radius: 8px; text-align: center;">
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">Estimated Monthly EMI</p>
+                            <h2 id="display-emi" style="color: var(--secondary); margin: 4px 0;">₹0</h2>
+                            <p style="font-size: 0.65rem; color: var(--text-muted);">Total Repayment: <span
+                                    id="display-total-repayment">₹0</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Family Savings Milestone Tracker -->
+                    <div class="glass-card" style="border-top: 4px solid var(--success);">
+                        <h3 style="color: var(--success);">Family Savings Tracker</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Track your progress
+                            towards the tuition goal.</p>
+                        <div style="margin-top: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.75rem;">Fund Status</span>
+                                <span style="font-size: 0.75rem; font-weight: 700; color: var(--success);"
+                                    id="savings-percent">40%</span>
+                            </div>
+                            <div class="progress-bar" style="height: 12px;">
+                                <div id="savings-progress" style="width: 40%; background: var(--success);"></div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px;">
+                                <div style="text-align: left;">
+                                    <p style="font-size: 0.65rem; color: var(--text-muted);">Saved</p>
+                                    <p style="font-size: 0.9rem; font-weight: 700;">₹4.2L</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <p style="font-size: 0.65rem; color: var(--text-muted);">Target</p>
+                                    <p style="font-size: 0.9rem; font-weight: 700;">₹10L</p>
+                                </div>
+                            </div>
+                            <button class="btn"
+                                style="width: 100%; margin-top: 16px; background: var(--surface); border: 1px solid var(--success); color: var(--success); font-size: 0.8rem;"
+                                onclick="addSavingsMilestone()">Log Contribution</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Phase 23: Parent Portal Section -->
+        <section id="parent-portal" class="section">
+            <div class="section-header">
+                <h2 style="color: var(--secondary);">Guardian Dashboard</h2>
+                <p style="color: var(--text-muted);">A simplified view for parents to monitor progress and financial
+                    planning.</p>
+            </div>
+
+            <div class="grid"
+                style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
+                <!-- Student Digest Card -->
+                <div class="glass-card" style="border-left: 4px solid var(--primary);">
+                    <h4>Student Progress Digest</h4>
+                    <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Readiness Score</span>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);"
+                                id="parent-readiness">0%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Archetype</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;" id="parent-archetype">-</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Top Interest</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;" id="parent-interest">-</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateGuardianReport()"
+                        style="width: 100%; margin-top: 20px;">Download Full PDF Report</button>
+                </div>
+
+                <!-- Financial Health Card -->
+                <div class="glass-card" style="border-left: 4px solid var(--success);">
+                    <h4>Family Education Fund</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Goal: ₹10,00,000 for Higher
+                        Education.</p>
+                    <div class="progress-bar" style="height: 20px; border-radius: 10px;">
+                        <div id="parent-savings-progress"
+                            style="width: 40%; background: var(--success); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.6rem; font-weight: 700;">
+                            40%</div>
+                    </div>
+                    <div style="margin-top: 16px; font-size: 0.8rem;">
+                        <p><strong>Next Milestone:</strong> First Semester Tuition (₹2.5L) - <span
+                                style="color: var(--success);">ACHIEVED!</span></p>
+                        <p style="margin-top: 4px;"><strong>Gap:</strong> ₹5.8L remaining.</p>
+                    </div>
+                    <button class="btn"
+                        style="width: 100%; margin-top: 20px; background: var(--surface); border: 1px solid var(--success);"
+                        onclick="showSection('resources'); switchResourceTab('finance')">Manage Finance Hub</button>
+                </div>
+
+                <!-- Roadmap Approval Card -->
+                <div class="glass-card" style="border-left: 4px solid var(--warning);">
+                    <h4>Roadmap Authorizations</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 12px 0;">Review and support your
+                        child's career choices.</p>
+                    <div id="parent-roadmap-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        <!-- Roadmaps pending review -->
+                        <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; padding: 20px;">No
+                            roadmaps pending parental review.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <button class="btn" onclick="toggleParentMode()"
+                    style="background: var(--surface); border: 1px solid var(--secondary); color: var(--secondary);">Return
+                    to Student Mode</button>
+            </div>
+        </section>
+
+        <!-- Career Encyclopedia Section -->
+        <section id="encyclopedia" class="section">
+            <div class="section-header">
+                <h2>Career Encyclopedia</h2>
+                <p style="color: var(--text-muted);">Deep-dive into roles, responsibilities, and industry benchmarks.
+                </p>
+            </div>
+
+            <div class="filters glass-card" style="margin-top: 24px;">
+                <input type="text" id="career-search-input"
+                    placeholder="Search roles or skills (e.g., 'Python', 'UX', 'Law')..." oninput="filterCareers()">
+                <select id="career-category-filter" onchange="filterCareers()">
+                    <option value="all">All Domains</option>
+                    <option value="Technical">Technology & Engineering</option>
+                    <option value="Commercial">Business & Finance</option>
+                    <option value="Creative">Arts & Design</option>
+                    <option value="Social">Social & Humanities</option>
+                </select>
+            </div>
+
+            <div id="career-grid" class="grid" style="margin-top: 32px;">
+                <!-- Career cards injected here -->
+            </div>
+
+            <!-- Phase 19: Lazy Load Trigger -->
+            <div id="load-more-container" style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="loadMoreCareers()" id="load-more-btn">Load More
+                    Careers</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Career Detail Modal -->
+    <div id="career-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <button class="close-btn" onclick="closeCareerModal()">&times;</button>
+            <div id="career-detail-content">
+                <!-- Content injected here -->
+            </div>
+
+            <!-- Phase 21: Alumni Chat Interface (Initially Hidden) -->
+            <div id="alumni-chat-section" class="hidden"
+                style="margin-top: 32px; border-top: 1px solid var(--glass-border); padding-top: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="color: var(--primary);">Talk to a virtual Alumni</h3>
+                    <button class="btn" onclick="toggleAlumniChat()"
+                        style="font-size: 0.75rem; background: var(--surface);">Close Chat</button>
+                </div>
+                <div id="alumni-chat-box"
+                    style="height: 250px; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 16px; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px;">
+                    <!-- Chat messages -->
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="alumni-chat-input" placeholder="Ask about their experience..."
+                        style="flex: 1; background: var(--surface); border: 1px solid var(--glass-border); color: var(--text-main); padding: 10px 16px; border-radius: 8px;">
+                    <button class="btn btn-primary" onclick="sendMessageToAlumni()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <div class="footer-content grid"
+            style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: left; margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--glass-border);">
+            <div>
+                <div class="logo">Path<span>Pilot</span></div>
+                <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">Reducing confusion, improving
+                    informed decision-making, and influencing higher education enrollment.</p>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 16px;">Platform</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><a href="#" onclick="showSection('home')"
+                            style="text-decoration: none; color: var(--text-muted);">Home</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#" onclick="showSection('assessment')"
+                            style="text-decoration: none; color: var(--text-muted);">Aptitude Test</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#" onclick="showSection('comparison')"
+                            style="text-decoration: none; color: var(--text-muted);">Degree Comparison</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#" onclick="showSection('resources')"
+                            style="text-decoration: none; color: var(--text-muted);">Knowledge Hub</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#" onclick="showSection('encyclopedia')"
+                            style="text-decoration: none; color: var(--text-muted);">Career Encyclopedia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 16px;">Resources</h3>
+                <ul class="footer-links" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><a href="#"
+                            style="text-decoration: none; color: var(--text-muted);">Government Colleges</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#"
+                            style="text-decoration: none; color: var(--text-muted);">Scholarships</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#"
+                            style="text-decoration: none; color: var(--text-muted);">Career Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <p
+            style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: 40px; padding-bottom: 20px;">
+            &copy; 2026 PathPilot. All rights reserved.</p>
+    </footer>
+
+    <style>
+        .navbar {
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--surface);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .question {
+            margin-bottom: 24px;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .option-btn {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            padding: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition);
+            color: var(--text-main);
+        }
+
+        .option-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--primary);
+        }
+
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .filters input,
+        .filters select {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Mobile nav simplified */
+        }
+    </style>
+
+    <!-- Career Comparison Modal -->
+    <div id="comparison-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate" style="max-width: 1000px; width: 95%;">
+            <button class="btn" onclick="closeComparisonModal()"
+                style="position: absolute; top: 20px; right: 20px; background: var(--surface);">×</button>
+            <h2 style="text-align: center; margin-bottom: 40px;">Career Head-to-Head</h2>
+
+            <div id="comparison-grid" class="grid"
+                style="grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden;">
+                <!-- Comparison Columns Injected Here -->
+            </div>
+
+            <div style="margin-top: 32px; text-align: center;">
+                <button class="btn btn-primary" onclick="closeComparisonModal()">Back to Encyclopedia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Comparison Tray -->
+    <div id="comparison-tray" class="glass-card animate"
+        style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: none; padding: 16px 24px; z-index: 900; box-shadow: 0 10px 30px rgba(0,0,0,0.5); align-items: center; gap: 20px; border-color: var(--primary);">
+        <p style="margin: 0; font-weight: 600; font-size: 0.9rem;">
+            <span id="comparison-count" style="color: var(--secondary);">0</span> / 2 Selected for Comparison
+        </p>
+        <div style="display: flex; gap: 8px;">
+            <button class="btn" onclick="clearComparison()"
+                style="background: var(--surface); font-size: 0.8rem; padding: 8px 12px;">Clear</button>
+            <button id="launch-comparison" class="btn btn-primary" onclick="openComparisonModal()" disabled
+                style="font-size: 0.8rem; padding: 8px 16px;">Compare Now</button>
+        </div>
+    </div>
+    <!-- Phase 10: Portfolio Modal -->
+    <div id="portfolio-modal" class="modal">
+        <div class="modal-content"
+            style="max-width: 800px; padding: 0; background: var(--bg); border: 2px solid var(--glass-border); overflow: hidden;">
+            <div id="portfolio-content" style="padding: 40px;">
+                <!-- Content handled by generatePortfolio() -->
+            </div>
+            <div
+                style="padding: 20px; border-top: 1px solid var(--glass-border); text-align: right; background: var(--surface);">
+                <button class="btn" onclick="closePortfolio()">Close</button>
+                <button class="btn btn-primary" onclick="window.print()">Print / Export PDF</button>
+            </div>
+        </div>
+    </div>
+    <!-- Guardian Report Modal -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; padding: 40px; border: 2px solid var(--accent);">
+            <div id="guardian-report-content">
+                <!-- Content injected here -->
+            </div>
+            <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center;">
+                <button class="btn btn-primary" onclick="window.print()">Print Report</button>
+                <button class="btn" style="background: var(--surface);"
+                    onclick="document.getElementById('guardian-modal').classList.remove('active')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roleplay Modal -->
+    <div id="roleplay-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate" style="max-width: 500px; text-align: center;">
+            <div id="roleplay-content">
+                <!-- Content injected here -->
+            </div>
+        </div>
+    </div>
+    <!-- PilotBot AI Coach -->
+    <div class="chatbot-widget">
+        <div id="chat-panel" class="chat-panel glass-card">
+            <div class="chat-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.2rem;">🤖</span>
+                    <div>
+                        <h4 style="margin: 0;">PilotBot</h4>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Career Expert Online</span>
+                    </div>
+                </div>
+                <button class="icon-btn" style="width: 32px; height: 32px; background: rgba(0,0,0,0.1);"
+                    onclick="toggleChat()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="chat-body" class="chat-body">
+                <div class="chat-msg bot-msg">Hi! I'm PilotBot. I can help you find careers, colleges, or scholarships.
+                    What are you looking for today?</div>
+            </div>
+            <form id="chat-form" class="chat-footer" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="chat-input" placeholder="Ask me anything..." autocomplete="off">
+                <button type="submit" class="icon-btn" style="background: var(--primary); color: white; border: none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <div id="chat-trigger" onclick="toggleChat()" aria-label="Open AI Career Coach">
+            <svg id="bot-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+    </div>
+    <!-- Phase 11: Community Feed Modal -->
+    <div id="community-feed-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; display: flex; flex-direction: column; height: 80vh;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 id="feed-title" style="color: var(--primary);">Community Discussion</h2>
+                <button class="close-btn" onclick="closeModal('community-feed-modal')">&times;</button>
+            </div>
+            <div id="feed-content" style="flex: 1; overflow-y: auto; padding-right: 10px; margin-bottom: 20px;">
+                <!-- Feed messages injected here -->
+            </div>
+            <form id="feed-form" onsubmit="handleFeedSubmit(event)" style="display: flex; gap: 10px;">
+                <input type="text" id="feed-input" placeholder="Type your message..."
+                    style="flex: 1; background: var(--surface); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px;"
+                    autocomplete="off">
+                <button type="submit" class="btn btn-primary" style="padding: 12px 20px;">Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Phase 11: Mentor Booking Modal -->
+    <div id="mentor-booking-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate" style="max-width: 450px; text-align: center;">
+            <h2 id="booking-mentor-name" style="color: var(--primary); margin-bottom: 16px;">Book a Session</h2>
+            <p id="booking-mentor-role" style="color: var(--text-muted); margin-bottom: 24px;"></p>
+            <div style="margin-bottom: 24px; text-align: left;">
+                <label style="display: block; margin-bottom: 8px; font-size: 0.9rem;">Select Date:</label>
+                <input type="date" id="booking-date"
+                    style="width: 100%; padding: 10px; background: var(--surface); border: 1px solid var(--glass-border); border-radius: 8px; margin-bottom: 16px;">
+                <label style="display: block; margin-bottom: 8px; font-size: 0.9rem;">Select Time Slot:</label>
+                <select id="booking-time"
+                    style="width: 100%; padding: 10px; background: var(--surface); border: 1px solid var(--glass-border); border-radius: 8px;">
+                    <option value="10:00 AM">10:00 AM - 11:00 AM</option>
+                    <option value="2:00 PM">02:00 PM - 03:00 PM</option>
+                    <option value="5:00 PM">05:00 PM - 06:00 PM</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="confirmBooking()">Request Session</button>
+                <button class="btn" style="flex: 1; background: var(--surface);"
+                    onclick="closeModal('mentor-booking-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <!-- Phase 12: Interview Pilot Modal -->
+    <div id="interview-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; height: 80vh; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 id="interview-title">Interview Pilot AI</h2>
+                <div id="interview-progress" style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">
+                    Question 1/5</div>
+            </div>
+            <div id="interview-chat" style="flex: 1; overflow-y: auto; padding-right: 10px; margin-bottom: 20px;">
+                <!-- Interview content -->
+            </div>
+            <div id="interview-controls" style="display: flex; gap: 10px;">
+                <input type="text" id="interview-input" placeholder="Type your response..."
+                    style="flex: 1; background: var(--surface); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px;">
+                <button class="btn btn-primary" onclick="submitInterviewResponse()">Send</button>
+            </div>
+        </div>
+    </div>
+    <!-- Phase 13: Notification History Modal -->
+    <div id="notif-history-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 500px; max-height: 80vh; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="color: var(--primary);">Notification History</h2>
+                <button class="close-btn" onclick="closeModal('notif-history-modal')">&times;</button>
+            </div>
+            <div id="notif-history-list" style="flex: 1; overflow-y: auto; padding-right: 10px;">
+                <!-- History items injected here -->
+            </div>
+        </div>
+    </div>
+    <!-- Phase 14: AI Course Generator Modal -->
+    <div id="course-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; max-height: 80vh; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div>
+                    <h2 id="course-title" style="color: var(--primary); margin-bottom: 4px;">Personalized AI Course</h2>
+                    <p id="course-subtitle" style="font-size: 0.8rem; color: var(--text-muted);"></p>
+                </div>
+                <button class="close-btn" onclick="closeModal('course-modal')">&times;</button>
+            </div>
+            <div id="course-content" style="flex: 1; overflow-y: auto; padding-right: 10px;">
+                <!-- Week-by-week course content -->
+            </div>
+            <div
+                style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center;">
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 16px;">This course is dynamically
+                    generated based on your profile.</p>
+                <button class="btn btn-primary" style="width: 100%;" onclick="addCourseToProfile()">Enroll & Add to
+                    Roadmap</button>
+            </div>
+        </div>
+    </div>
+    <!-- Phase 16: Global Command Palette -->
+    <div id="command-palette" class="modal-overlay" style="align-items: flex-start; padding-top: 10vh;">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; padding: 0; overflow: hidden; border: 1px solid var(--primary);">
+            <div
+                style="padding: 20px; border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; gap: 12px; background: var(--surface);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="command-search" placeholder="Type to search (Careers, Colleges, Sections...)"
+                    style="flex: 1; background: none; border: none; color: var(--text-main); font-size: 1.1rem; outline: none;">
+                <kbd
+                    style="background: var(--background); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; color: var(--text-muted); border: 1px solid var(--glass-border);">ESC</kbd>
+            </div>
+            <div id="command-results" style="max-height: 400px; overflow-y: auto;">
+                <!-- Search results injected here -->
+            </div>
+            <div
+                style="padding: 12px 20px; background: var(--background); border-top: 1px solid var(--glass-border); display: flex; gap: 16px; font-size: 0.7rem; color: var(--text-muted);">
+                <span><kbd style="background: var(--surface); padding: 1px 4px; border-radius: 2px;">↑↓</kbd>
+                    Navigate</span>
+                <span><kbd style="background: var(--surface); padding: 1px 4px; border-radius: 2px;">Enter</kbd>
+                    Select</span>
+            </div>
+        </div>
+    </div>
+    <!-- Phase 19: Error Recovery Modal -->
+    <div id="error-modal" class="modal-overlay" style="z-index: 2000;">
+        <div class="modal-content glass-card animate"
+            style="max-width: 500px; text-align: center; border: 1px solid var(--warning);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+            <h2 style="color: var(--warning); margin-bottom: 12px;">Something went wrong</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 24px;">
+                PathPilot encountered an unexpected error. Don't worry, your progress is safe in local storage.
+            </p>
+            <div id="error-details"
+                style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 24px; text-align: left; overflow-x: auto; white-space: pre-wrap;">
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn btn-primary" onclick="window.location.reload()">Reload Application</button>
+                <button class="btn" onclick="resetProfile()" style="background: var(--surface);">Reset Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase 24: Day in the Life Simulator Modal -->
+    <div id="simulation-modal" class="modal-overlay" style="z-index: 1500;">
+        <div class="modal-content glass-card animate"
+            style="max-width: 600px; background: var(--surface); border: 1px solid var(--glass-border); padding: 0; overflow: hidden;">
+
+            <!-- Header with Stats -->
+            <div
+                style="padding: 20px; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">Day in the Life</h3>
+                    <p id="sim-role-title" style="margin: 4px 0 0; font-size: 0.85rem; color: var(--text-muted);">Full
+                        Stack Developer</p>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);" id="sim-clock">09:00 AM
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bars -->
+            <div style="padding: 12px 20px; background: rgba(255,255,255,0.02); display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">Energy</span>
+                        <span id="sim-energy-val" style="font-size: 0.75rem; color: var(--success);">100%</span>
+                    </div>
+                    <div class="progress-container" style="height: 6px; background: rgba(255,255,255,0.1);">
+                        <div id="sim-energy-bar" class="progress-bar" style="width: 100%; background: var(--success);">
+                        </div>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">Stress</span>
+                        <span id="sim-stress-val" style="font-size: 0.75rem; color: var(--accent);">0%</span>
+                    </div>
+                    <div class="progress-container" style="height: 6px; background: rgba(255,255,255,0.1);">
+                        <div id="sim-stress-bar" class="progress-bar" style="width: 0%; background: var(--accent);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario Content -->
+            <div id="sim-content" style="padding: 24px;">
+                <div id="sim-scenario-text"
+                    style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 24px; color: var(--text-main);">
+                    Loading scenario...
+                </div>
+                <div id="sim-options" style="display: flex; flex-direction: column; gap: 12px;">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div
+                style="padding: 16px 24px; border-top: 1px solid var(--glass-border); display: flex; justify-content: flex-end;">
+                <button class="btn" onclick="closeModal('simulation-modal')"
+                    style="background: rgba(255,255,255,0.05);">Exit Simulation</button>
+            </div>
+        </div>
+    </div>
+    <!-- Phase 34: Professional Portfolio Modal -->
+    <div id="portfolio-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 800px; max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div
+                style="padding: 20px 30px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; background: var(--surface);">
+                <h2 style="color: var(--primary); margin: 0;">Smart Career Portfolio</h2>
+                <button class="close-btn" onclick="closeModal('portfolio-modal')">&times;</button>
+            </div>
+            <div id="portfolio-content" style="flex: 1; overflow-y: auto;">
+                <!-- Content injected via generatePortfolio() -->
+            </div>
+            <div
+                style="padding: 20px 30px; border-top: 1px solid var(--glass-border); display: flex; justify-content: flex-end; gap: 12px; background: var(--surface);">
+                <button class="btn" style="background: var(--background);" onclick="window.print()">Print / Export
+                    PDF</button>
+                <button class="btn btn-primary" onclick="shareAchievement('Professional Portfolio')">Share on
+                    LinkedIn</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase 34: Guardian Progress Report Modal -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content glass-card animate"
+            style="max-width: 550px; padding: 0; overflow: hidden; background: white;">
+            <div
+                style="padding: 15px 25px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="color: #0f172a; margin: 0; font-size: 1.2rem;">Guardian Snapshot</h2>
+                <button class="close-btn" onclick="closeModal('guardian-modal')"
+                    style="color: #64748b;">&times;</button>
+            </div>
+            <div id="guardian-report-content">
+                <!-- Data injected via generateGuardianReport() -->
+            </div>
+        </div>
+    </div>
+
+    <script src="data/database.js"></script>
+    <script src="app.js"></script>
+    <script src="simulation.js"></script>
+</body>
+
+</html>
