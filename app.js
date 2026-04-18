@@ -144,7 +144,7 @@ let user = JSON.parse(localStorage.getItem('pathpilot_user')) || {
 };
 
 // --- Backend Integration Constants ---
-const BACKEND_URL = "http://localhost:5000"; // Update this to your Render URL after deployment
+const BACKEND_URL = "https://pathpilot-dg71.onrender.com";
 
 const apiCall = async (endpoint, options = {}) => {
     const token = localStorage.getItem('pathpilot_token');
