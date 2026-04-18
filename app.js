@@ -143,6 +143,29 @@ let user = JSON.parse(localStorage.getItem('pathpilot_user')) || {
     resilienceScore: 0
 };
 
+// --- Backend Integration Constants ---
+const BACKEND_URL = "http://localhost:5000"; // Update this to your Render URL after deployment
+
+const apiCall = async (endpoint, options = {}) => {
+    const token = localStorage.getItem('pathpilot_token');
+    const headers = {
+        'Content-Type': 'application/json',
+        ...(token && { 'x-auth-token': token }),
+        ...options.headers
+    };
+
+    try {
+        const response = await fetch(`${BACKEND_URL}${endpoint}`, { ...options, headers });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'API Error');
+        return data;
+    } catch (err) {
+        console.error(`API Call failed: ${endpoint}`, err);
+        addNotif("Network Error", err.message);
+        throw err;
+    }
+};
+
 // Patch legacy objects (Self-healing)
 if (!user.marks) user.marks = { math: 0, arts: 0, science: 0 };
 if (!user.scores) user.scores = { Logic: 0, Knowledge: 0, Social: 0, Creative: 0 };
@@ -248,10 +271,12 @@ function validateOnboarding(step) {
     return true;
 }
 
-function completeOnboarding() {
+async function completeOnboarding() {
     if (!validateOnboarding()) return;
 
     user.name = document.getElementById('user-name').value.trim();
+    user.email = document.getElementById('user-email').value.trim();
+    const password = document.getElementById('user-password').value;
     user.class = document.getElementById('user-class').value;
     user.gender = document.getElementById('user-gender').value;
     user.parentName = document.getElementById('parent-name').value.trim() || "Guardian";
@@ -263,13 +288,49 @@ function completeOnboarding() {
         science: parseInt(document.getElementById('marks-science').value)
     };
 
-    localStorage.setItem('pathpilot_user', JSON.stringify(user));
+    try {
+        // Register on Backend
+        await apiCall('/api/auth/register', {
+            method: 'POST',
+            body: JSON.stringify({ name: user.name, email: user.email, password })
+        });
 
-    updateProfileDisplay();
-    document.getElementById('onboarding-modal').classList.remove('active');
-    showSection('assessment');
-    addNotif("Welcome!", `Hi ${user.name.split(' ')[0]}, your career journey starts here.`);
-    unlockBadge("assessment-done"); // First major milestone
+        // Login to get Token
+        const loginData = await apiCall('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({ email: user.email, password })
+        });
+
+        // Store Token and User Data
+        localStorage.setItem('pathpilot_token', loginData.token);
+        user.id = loginData.user.id;
+        
+        // Sync Profile Details
+        await apiCall('/api/user/profile', {
+            method: 'PUT',
+            body: JSON.stringify({
+                current_class: user.class,
+                gender: user.gender,
+                primary_interest: user.primaryInterest
+            })
+        });
+
+        localStorage.setItem('pathpilot_user', JSON.stringify(user));
+        updateProfileDisplay();
+        document.getElementById('onboarding-modal').classList.remove('active');
+        showSection('assessment');
+        addNotif("Welcome!", `Hi ${user.name.split(' ')[0]}, your synced career journey starts here.`);
+        unlockBadge("assessment-done");
+    } catch (err) {
+        console.error("Onboarding Sync Failed:", err);
+        // Fallback to local if server is down (optional, but keep it robust)
+        addNotif("Sync Error", "Could not connect to backend, using local mode.");
+        
+        localStorage.setItem('pathpilot_user', JSON.stringify(user));
+        updateProfileDisplay();
+        document.getElementById('onboarding-modal').classList.remove('active');
+        showSection('assessment');
+    }
 }
 
 function updateProfileDisplay() {
