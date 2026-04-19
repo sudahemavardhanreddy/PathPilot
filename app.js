@@ -146,6 +146,18 @@ let user = JSON.parse(localStorage.getItem('pathpilot_user')) || {
 // --- Backend Integration Constants ---
 const BACKEND_URL = "https://pathpilot-dg71.onrender.com";
 
+// Handle social login (Google/Apple) — skips onboarding, goes straight to profile
+window.handleSocialLogin = function(name, email) {
+    user.name = name;
+    user.email = email;
+    localStorage.setItem('pathpilot_user', JSON.stringify(user));
+    document.getElementById('onboarding-modal').classList.remove('active');
+    document.getElementById('login-btn').textContent = name.split(' ')[0];
+    document.getElementById('display-name').textContent = name;
+    addNotif("Welcome back!", `Signed in as ${name}`);
+    showSection('home');
+};
+
 const apiCall = async (endpoint, options = {}) => {
     const token = localStorage.getItem('pathpilot_token');
     const headers = {

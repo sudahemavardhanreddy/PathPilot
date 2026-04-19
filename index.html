@@ -25,6 +25,61 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
 
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBV-emCKcp3fKq2AXSIwzRAmJgwZcY3RYU",
+            authDomain: "pathpilot-c663c.firebaseapp.com",
+            projectId: "pathpilot-c663c",
+            storageBucket: "pathpilot-c663c.firebasestorage.app",
+            messagingSenderId: "6187405290",
+            appId: "1:6187405290:web:ec0a79c698203146e96c93",
+            measurementId: "G-1CG038D4QR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        window.signInWithGoogle = async function() {
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                const user = result.user;
+                // Save to localStorage and sync with backend
+                localStorage.setItem('pathpilot_firebase_user', JSON.stringify({
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    uid: user.uid
+                }));
+                window.handleSocialLogin(user.displayName, user.email);
+            } catch (err) {
+                console.error("Google Sign-In Error:", err.message);
+                alert("Google Sign-In failed: " + err.message);
+            }
+        };
+
+        window.signOutUser = async function() {
+            await signOut(auth);
+            localStorage.removeItem('pathpilot_firebase_user');
+            localStorage.removeItem('pathpilot_token');
+            location.reload();
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const loginBtn = document.getElementById('login-btn');
+                if (loginBtn) {
+                    loginBtn.textContent = user.displayName?.split(' ')[0] || 'Profile';
+                    loginBtn.onclick = () => window.signOutUser();
+                }
+            }
+        });
+    </script>
+
     <!-- Social Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PathPilot | AI Career Roadmap & College Finder">
@@ -164,6 +219,23 @@
             <div id="onboarding-step-1" class="onboarding-step active">
                 <h2>Welcome to PathPilot</h2>
                 <p>Let's start with the basics. What's your name?</p>
+
+                <!-- Social Login Buttons -->
+                <button onclick="window.signInWithGoogle()" style="width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:white; color:#333; font-size:0.95rem; font-weight:600; cursor:pointer; margin-bottom:10px;">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+                    Continue with Google
+                </button>
+                <button style="width:100%; display:flex; align-items:center; justify-content:center; gap:10px; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:#000; color:#fff; font-size:0.95rem; font-weight:600; cursor:pointer; margin-bottom:20px;" onclick="alert('Apple Sign-In requires an Apple Developer account. Use Google or email instead.')">
+                    <svg width="20" height="20" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 70.1 0 128.4 46.4 172.5 46.4 42.8 0 109.6-49 192.5-49 30.8 0 108.2 2.6 168.6 71.9zm-174.5-89.3c-23.1-30.8-58.5-54.5-105.6-54.5-11.5 0-23.1 1.3-34.6 3.9 1.3-11.5 1.9-23.1 1.9-34.6 0-62.2-23.7-124.4-71.9-168.6C364.2 12.3 315.7 0 271.6 0c-1.9 0-3.8 0-5.8.6 1.9 13.4 2.6 27.4 2.6 40.8 0 66.7-26.1 128.4-71.9 173.1-45.8 44.7-108.2 70.8-172.5 70.8-1.9 0-3.8 0-5.8-.6.6 1.9.6 3.8.6 5.8 0 62.2 23.7 124.4 71.9 168.6 45.8 44.7 108.2 70.8 172.5 70.8 11.5 0 23.1-1.3 34.6-3.9-1.3 11.5-1.9 23.1-1.9 34.6 0 62.2 23.7 124.4 71.9 168.6 45.8 44.7 108.2 70.8 172.5 70.8 64.3 0 126.5-26.1 172.5-70.8 48.2-44.2 71.9-106.4 71.9-168.6 0-1.9 0-3.8-.6-5.8-11.5 1.9-23.1 2.6-34.6 2.6z"/></svg>
+                    Continue with Apple
+                </button>
+
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+                    <div style="flex:1; height:1px; background:var(--glass-border);"></div>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">or sign up with email</span>
+                    <div style="flex:1; height:1px; background:var(--glass-border);"></div>
+                </div>
+
                 <input type="text" id="user-name" placeholder="Full Name" required>
                 <input type="email" id="user-email" placeholder="Email Address" required style="margin-top: 12px; width: 100%;">
                 <input type="password" id="user-password" placeholder="Choose Password" required style="margin-top: 12px; width: 100%;">
