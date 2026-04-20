@@ -30,37 +30,54 @@
     <script>
         const SUPABASE_URL = "https://puwceuyntkmmlgmvjoqu.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1d2NldXludGttbWxnbXZqb3F1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDMyNzYsImV4cCI6MjA5MjI3OTI3Nn0.iSmR9AqyRSDC7S6Dwd5HeDMLmRK78xOfWWX8oSKnw88";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let _supabaseClient = null;
+
+        function getSupabase() {
+            if (!_supabaseClient) {
+                _supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+            return _supabaseClient;
+        }
 
         window.signInWithGoogle = async function() {
-            const redirectTo = window.location.origin;
-            const { error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: redirectTo,
-                    queryParams: {
-                        access_type: 'offline',
-                        prompt: 'consent'
+            try {
+                const client = getSupabase();
+                const { error } = await client.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin,
+                        queryParams: { access_type: 'offline', prompt: 'consent' }
                     }
-                }
-            });
-            if (error) alert("Google Sign-In failed: " + error.message);
+                });
+                if (error) alert("Google Sign-In failed: " + error.message);
+            } catch(e) {
+                alert("Google Sign-In error: " + e.message);
+            }
         };
 
-        // Handle redirect after Google login
-        window.addEventListener('load', async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session && session.user) {
-                const u = session.user;
-                window.handleSocialLogin(u.user_metadata?.full_name || u.email, u.email);
-            }
-        });
-
         window.signOutUser = async function() {
-            await supabase.auth.signOut();
+            const client = getSupabase();
+            await client.auth.signOut();
             localStorage.removeItem('pathpilot_token');
             location.reload();
         };
+
+        // Handle redirect after Google login
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const client = getSupabase();
+                const { data: { session } } = await client.auth.getSession();
+                if (session && session.user) {
+                    const u = session.user;
+                    if (window.handleSocialLogin) {
+                        window.handleSocialLogin(u.user_metadata?.full_name || u.email, u.email);
+                    }
+                }
+            } catch(e) {
+                console.error("Session check failed:", e.message);
+            }
+        });
     </script>
 
     <!-- Social Meta Tags -->
