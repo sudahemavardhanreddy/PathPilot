@@ -25,66 +25,37 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
 
-    <!-- Firebase -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBV-emCKcp3fKq2AXSIwzRAmJgwZcY3RYU",
-            authDomain: "pathpilot-c663c.firebaseapp.com",
-            projectId: "pathpilot-c663c",
-            storageBucket: "pathpilot-c663c.firebasestorage.app",
-            messagingSenderId: "6187405290",
-            appId: "1:6187405290:web:ec0a79c698203146e96c93",
-            measurementId: "G-1CG038D4QR"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const googleProvider = new GoogleAuthProvider();
-
-        // Handle redirect result on page load
-        getRedirectResult(auth).then((result) => {
-            if (result && result.user) {
-                const user = result.user;
-                localStorage.setItem('pathpilot_firebase_user', JSON.stringify({
-                    name: user.displayName,
-                    email: user.email,
-                    photo: user.photoURL,
-                    uid: user.uid
-                }));
-                window.handleSocialLogin(user.displayName, user.email);
-            }
-        }).catch((err) => {
-            console.error("Redirect result error:", err.message);
-        });
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://puwceuyntkmmlgmvjoqu.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1d2NldXludGttbWxnbXZqb3F1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDMyNzYsImV4cCI6MjA5MjI3OTI3Nn0.iSmR9AqyRSDC7S6Dwd5HeDMLmRK78xOfWWX8oSKnw88";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         window.signInWithGoogle = async function() {
-            try {
-                await signInWithRedirect(auth, googleProvider);
-            } catch (err) {
-                console.error("Google Sign-In Error:", err.message);
-                alert("Google Sign-In failed: " + err.message);
-            }
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
+            });
+            if (error) alert("Google Sign-In failed: " + error.message);
         };
 
+        // Handle redirect after Google login
+        window.addEventListener('load', async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session && session.user) {
+                const u = session.user;
+                window.handleSocialLogin(u.user_metadata?.full_name || u.email, u.email);
+            }
+        });
+
         window.signOutUser = async function() {
-            await signOut(auth);
-            localStorage.removeItem('pathpilot_firebase_user');
+            await supabase.auth.signOut();
             localStorage.removeItem('pathpilot_token');
             location.reload();
         };
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const loginBtn = document.getElementById('login-btn');
-                if (loginBtn) {
-                    loginBtn.textContent = user.displayName?.split(' ')[0] || 'Profile';
-                    loginBtn.onclick = () => window.signOutUser();
-                }
-            }
-        });
     </script>
 
     <!-- Social Meta Tags -->
