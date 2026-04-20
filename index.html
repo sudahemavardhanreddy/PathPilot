@@ -28,7 +28,7 @@
     <!-- Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBV-emCKcp3fKq2AXSIwzRAmJgwZcY3RYU",
@@ -44,11 +44,10 @@
         const auth = getAuth(app);
         const googleProvider = new GoogleAuthProvider();
 
-        window.signInWithGoogle = async function() {
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
+        // Handle redirect result on page load
+        getRedirectResult(auth).then((result) => {
+            if (result && result.user) {
                 const user = result.user;
-                // Save to localStorage and sync with backend
                 localStorage.setItem('pathpilot_firebase_user', JSON.stringify({
                     name: user.displayName,
                     email: user.email,
@@ -56,6 +55,14 @@
                     uid: user.uid
                 }));
                 window.handleSocialLogin(user.displayName, user.email);
+            }
+        }).catch((err) => {
+            console.error("Redirect result error:", err.message);
+        });
+
+        window.signInWithGoogle = async function() {
+            try {
+                await signInWithRedirect(auth, googleProvider);
             } catch (err) {
                 console.error("Google Sign-In Error:", err.message);
                 alert("Google Sign-In failed: " + err.message);
